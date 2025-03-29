@@ -21,7 +21,6 @@ class ViennaTransportCard extends HTMLElement {
         }
 
         this._config = {
-            title: config.title || 'Vienna Transport',
             update_interval: config.update_interval || 60,
             max_departures: config.max_departures || 3,
             lines: config.lines.map(line => {
@@ -159,9 +158,6 @@ class ViennaTransportCard extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <ha-card>
-                <div class="card-header">
-                    <div class="title">${this._config.title}</div>
-                </div>
                 <div class="card-content">
                     ${this._generateLineCards()}
                 </div>
@@ -500,7 +496,6 @@ class ViennaTransportCard extends HTMLElement {
 
     static getStubConfig() {
         return {
-            title: "Vienna Transport",
             update_interval: 60,
             max_departures: 3,
             lines: [
