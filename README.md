@@ -4,7 +4,7 @@ Wiener Linien meets Home Assistant!
 
 Dashboard Karte um Abfahrten anzuzeigen.
 
-- Das Javascript file muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources), danach HA neu starten.
+- vienna-transport-card.js muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources), danach HA neu starten.
 
 - example_lovelace.yaml zeigt korrekte Verwendung. Die station_id muss der Request entnommen werden, welche die reguläre Wiener Linien Website für Station XY zum Server macht. 
 
