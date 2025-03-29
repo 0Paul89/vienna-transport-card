@@ -129,12 +129,13 @@ class ViennaTransportCard extends HTMLElement {
             for (const departure of (trip.departures || [])) {
                 const planned = new Date(departure.plannedAt);
                 const estimated = departure.estimatedAt ? new Date(departure.estimatedAt) : planned;
-                const delayed = departure.estimatedAt && (planned.getTime() !== estimated.getTime());
+
+                const minutesUntilDeparture = Math.ceil((estimated.getTime() - Date.now()) / 60000);
 
                 departures[direction].push({
                     time: this._formatTime(estimated),
                     destination: direction,
-                    delayed: delayed,
+                    minutesUntilDeparture: minutesUntilDeparture,
                     facilities: departure.facilities || [],
                     hash: Date.now() + Math.random()
                 });
@@ -150,7 +151,7 @@ class ViennaTransportCard extends HTMLElement {
     }
 
     _formatTime(date) {
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
     }
 
     _updateView() {
@@ -247,9 +248,7 @@ class ViennaTransportCard extends HTMLElement {
                                 <li class="departure-item">
                                     <span class="departure-time">${dep.time}</span>
                                     <span class="departure-destination">${dep.destination}</span>
-                                    <span class="status ${dep.delayed ? 'delayed' : 'on-time'}">
-                                        ${dep.delayed ? 'Delayed' : 'On Time'}
-                                    </span>
+                                    <span class="minutes-until">${dep.minutesUntilDeparture} min</span>
                                 </li>
                             `).join('')}
                         </ul>
@@ -345,7 +344,6 @@ class ViennaTransportCard extends HTMLElement {
                 opacity: 0.6; /* Dim inactive lines slightly */
             }
 
-
             .line-header {
                 display: flex;
                 align-items: center; /* Align icon and title */
@@ -390,7 +388,6 @@ class ViennaTransportCard extends HTMLElement {
             .line-icon.error { background-color: var(--error-color); } /* Error icon color */
             .line-icon.inactive { background-color: var(--secondary-text-color); } /* Inactive icon color */
 
-
             .station-name {
                 font-size: 0.95rem;
                 color: var(--secondary-text-color);
@@ -418,7 +415,6 @@ class ViennaTransportCard extends HTMLElement {
                 margin-right: 5px;
             }
 
-
             .direction-departures {
                 margin-bottom: 12px;
             }
@@ -437,7 +433,6 @@ class ViennaTransportCard extends HTMLElement {
                 margin-right: 6px;
                 --mdc-icon-size: 18px;
             }
-
 
             .departure-list {
                 list-style: none;
@@ -459,12 +454,16 @@ class ViennaTransportCard extends HTMLElement {
                 background: rgba(255, 255, 255, 0.1); /* Slightly brighter on hover */
             }
 
-
             .departure-time {
                 font-weight: 500;
                 font-size: 1.1rem;
                 margin-right: 10px; /* Space between time and destination */
                 color: var(--primary-text-color);
+            }
+            .original-time {
+                font-size: 0.9rem;
+                color: var(--secondary-text-color);
+                margin-left: 5px;
             }
             .departure-destination {
                 color: var(--secondary-text-color); /* Lighter color for destination */
@@ -474,24 +473,10 @@ class ViennaTransportCard extends HTMLElement {
                 white-space: nowrap; /* Prevent wrapping */
             }
 
-
-            .status {
-                font-size: 0.8rem;
-                padding: 4px 8px;
-                border-radius: 6px;
-                font-weight: 500;
-                letter-spacing: 0.02em;
-                text-transform: uppercase;
-            }
-
-            .status.on-time {
-                background: var(--status-on-time-background);
-                color: var(--success-color);
-            }
-
-            .status.delayed {
-                background: var(--status-delayed-background);
-                color: var(--error-color);
+            .minutes-until {
+                font-size: 0.9rem;
+                color: var(--accent-color);
+                margin-left: 10px;
             }
 
             .no-departures {
@@ -500,7 +485,6 @@ class ViennaTransportCard extends HTMLElement {
                 color: var(--secondary-text-color);
                 font-style: italic;
             }
-
 
             /* Icon Styles - Define your BIM and BUS icons here, or ideally, import from Material Design Icons for consistency */
             :host {
