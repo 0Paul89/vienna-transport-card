@@ -1,0 +1,21 @@
+views:
+  - title: Abfahrten
+    sections:
+      - type: grid
+        cards:
+          - type: custom:vienna-transport-card
+            update_interval: 60
+            max_departures: 3
+            lines:
+              - id: '52'
+                station_id: vao:490108800
+                name: Westbahnstraße/Neubaugasse
+                type: tram
+          - type: custom:vienna-transport-card
+            update_interval: 60
+            max_departures: 3
+            lines:
+              - id: 13A
+                station_id: vao:490108800
+                name: Westbahnstraße/Neubaugasse
+                type: bus
