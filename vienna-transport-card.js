@@ -104,8 +104,8 @@ class ViennaTransportCard extends HTMLElement {
     }
 
     _processApiResponse(data, lineId) {
-        const stationName = data?.station?.name || 'Unknown Station';
-        const lines = data?.station?.lines || [];
+        const stationName = data?.station?.station?.name || 'Unknown Station';
+        const lines = data?.station?.station?.lines || [];
 
         if (!lines.length) {
             return {
@@ -203,7 +203,7 @@ class ViennaTransportCard extends HTMLElement {
                                 <div class="line-icon ${line.type || 'bim'} error"></div>
                                 <span class="line-name">${lineId}</span>
                             </div>
-                            <div class="station-name">${data.station || line.name || 'Unknown Station'}</div>
+                            <div class="station-name">${data.station.station || line.name || 'Unknown Station'}</div>
                         </div>
                         <div class="error-message">
                             <ha-icon icon="mdi:alert-circle-outline"></ha-icon>
@@ -221,7 +221,7 @@ class ViennaTransportCard extends HTMLElement {
                                 <div class="line-icon ${line.type || 'bim'} inactive"></div>
                                 <span class="line-name">${lineId}</span>
                             </div>
-                            <div class="station-name">${data.station || line.name || 'Unknown Station'}</div>
+                            <div class="station-name">${data.station.station || line.name || 'Unknown Station'}</div>
                         </div>
                         <div class="inactive-message">
                             <ha-icon icon="mdi:information-outline"></ha-icon>
