@@ -7,7 +7,7 @@ Dashboard Karte um Abfahrten anzuzeigen.
 
 
 
-Installation 
+INSTALLATION 
 
 HACS:
 
