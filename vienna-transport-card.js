@@ -28,7 +28,8 @@ class ViennaTransportCard extends HTMLElement {
                     id: line.id,
                     station_id: line.station_id || 'vao:490108800',
                     name: line.name || line.id,
-                    type: line.type || 'bim'
+                    type: line.type || 'bim',
+                    direction: line.direction || null // New: optional direction filter
                 };
             })
         };
@@ -121,8 +122,17 @@ class ViennaTransportCard extends HTMLElement {
         const departures = {};
         const trips = lines[0]?.trips || [];
 
+        // Get the direction filter for this line
+        const directionFilter = this._lines[lineId]?.direction;
+
         for (const trip of trips) {
             const direction = trip.tripHeadsign || 'Unknown';
+            
+            // Skip this direction if we have a filter and it doesn't match
+            if (directionFilter && !this._matchesDirection(direction, directionFilter)) {
+                continue;
+            }
+
             departures[direction] = [];
 
             for (const departure of (trip.departures || [])) {
@@ -147,6 +157,16 @@ class ViennaTransportCard extends HTMLElement {
             departures,
             error: false
         };
+    }
+
+    _matchesDirection(actualDirection, filterDirection) {
+        // Convert both to lowercase for case-insensitive comparison
+        const actual = actualDirection.toLowerCase();
+        const filter = filterDirection.toLowerCase();
+        
+        // Check if the filter is contained in the actual direction
+        // This allows for partial matches (e.g., "Praterstern" matches "Praterstern, Bahnhof")
+        return actual.includes(filter);
     }
 
     _formatTime(date) {
@@ -184,6 +204,7 @@ class ViennaTransportCard extends HTMLElement {
                             <div class="line-title">
                                 <div class="line-icon ${line.type || 'bim'}"></div>
                                 <span class="line-name">${lineId}</span>
+                                ${line.direction ? `<span class="direction-filter">→ ${line.direction}</span>` : ''}
                             </div>
                             <div class="station-name">${line.name || lineId}</div>
                         </div>
@@ -202,6 +223,7 @@ class ViennaTransportCard extends HTMLElement {
                             <div class="line-title">
                                 <div class="line-icon ${line.type || 'bim'} error"></div>
                                 <span class="line-name">${lineId}</span>
+                                ${line.direction ? `<span class="direction-filter">→ ${line.direction}</span>` : ''}
                             </div>
                             <div class="station-name">${data.station.station || line.name || 'Unknown Station'}</div>
                         </div>
@@ -220,6 +242,7 @@ class ViennaTransportCard extends HTMLElement {
                             <div class="line-title">
                                 <div class="line-icon ${line.type || 'bim'} inactive"></div>
                                 <span class="line-name">${lineId}</span>
+                                ${line.direction ? `<span class="direction-filter">→ ${line.direction}</span>` : ''}
                             </div>
                             <div class="station-name">${data.station.station || line.name || 'Unknown Station'}</div>
                         </div>
@@ -232,24 +255,31 @@ class ViennaTransportCard extends HTMLElement {
             }
 
             let departuresHtml = '';
-            for (const [direction, deps] of Object.entries(data.departures)) {
-                departuresHtml += `
-                    <div class="direction-departures">
-                        <div class="direction-header">
-                            <ha-icon icon="mdi:arrow-right-bold-outline"></ha-icon>
-                            <span class="direction-name">${direction}</span>
+            const departureEntries = Object.entries(data.departures);
+            
+            // Check if we have any departures after filtering
+            if (departureEntries.length === 0) {
+                departuresHtml = '<div class="no-departures">No departures found for specified direction</div>';
+            } else {
+                for (const [direction, deps] of departureEntries) {
+                    departuresHtml += `
+                        <div class="direction-departures">
+                            <div class="direction-header">
+                                <ha-icon icon="mdi:arrow-right-bold-outline"></ha-icon>
+                                <span class="direction-name">${direction}</span>
+                            </div>
+                            <ul class="departure-list">
+                                ${deps.map(dep => `
+                                    <li class="departure-item">
+                                        <span class="departure-time">${dep.time}</span>
+                                        <span class="departure-destination">${dep.destination}</span>
+                                        <span class="minutes-until">${dep.minutesUntilDeparture} min</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
                         </div>
-                        <ul class="departure-list">
-                            ${deps.map(dep => `
-                                <li class="departure-item">
-                                    <span class="departure-time">${dep.time}</span>
-                                    <span class="departure-destination">${dep.destination}</span>
-                                    <span class="minutes-until">${dep.minutesUntilDeparture} min</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                `;
+                    `;
+                }
             }
 
             return `
@@ -258,11 +288,12 @@ class ViennaTransportCard extends HTMLElement {
                         <div class="line-title">
                             <div class="line-icon ${line.type || 'bim'}"></div>
                             <span class="line-name">${lineId}</span>
+                            ${line.direction ? `<span class="direction-filter">→ ${line.direction}</span>` : ''}
                         </div>
                         <div class="station-name">${data.station || line.name || 'Unknown Station'}</div>
                     </div>
                     <div class="line-departures">
-                        ${departuresHtml || '<div class="no-departures">No departures found</div>'}
+                        ${departuresHtml}
                     </div>
                 </div>
             `;
@@ -352,14 +383,24 @@ class ViennaTransportCard extends HTMLElement {
                 display: flex;
                 align-items: center;
                 margin-right: 16px; /* Space between title and station name */
+                flex-wrap: wrap;
+                gap: 8px;
             }
 
             .line-title .line-name {
-                margin-left: 8px;
                 font-size: 1.2rem;
                 font-weight: 500;
                 color: var(--primary-text-color);
                 letter-spacing: -0.01em;
+            }
+
+            .direction-filter {
+                font-size: 0.85rem;
+                color: var(--accent-color);
+                background: rgba(var(--rgb-accent-color), 0.15);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-weight: 400;
             }
 
             .line-icon {
@@ -509,7 +550,8 @@ class ViennaTransportCard extends HTMLElement {
                     id: "13A",
                     station_id: "vao:490108800",
                     name: "Westbahnstraße/Neubaugasse",
-                    type: "bus"
+                    type: "bus",
+                    direction: "Alser Straße"
                 }
             ]
         };
