@@ -7,10 +7,11 @@ views:
             update_interval: 60
             max_departures: 3
             lines:
-              - id: '52'
+              - id: '49'
                 station_id: vao:490108800
                 name: Westbahnstraße/Neubaugasse
                 type: tram
+                direction: "Ring, Volkstheater" # Nur diese Richtung anzeigen
           - type: custom:vienna-transport-card
             update_interval: 60
             max_departures: 3
@@ -19,3 +20,13 @@ views:
                 station_id: vao:490108800
                 name: Westbahnstraße/Neubaugasse
                 type: bus
+                direction: "HAUPTBAHNHOF" # Groß-/Kleinschreibung egal, flexibles matching -> wird in diesem Fall automatisch zu "Hauptbahnhof S U"
+          - type: custom:vienna-transport-card
+            update_interval: 60
+            max_departures: 3
+            lines:
+              - id: U6
+                station_id: vao:490018800
+                name: Burggasse-Stadthalle
+                type: ubahn
+                # keine direction angegeben -> beide werden angezeigt. 'direction: ""' hätte selben Effekt
