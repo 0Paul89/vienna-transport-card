@@ -10,7 +10,7 @@ views:
               - id: '49'
                 station_id: vao:490108800
                 name: Westbahnstraße/Neubaugasse
-                type: tram
+                type: bim
                 direction: "Ring, Volkstheater" # Nur diese Richtung anzeigen
           - type: custom:vienna-transport-card
             update_interval: 60
@@ -28,5 +28,5 @@ views:
               - id: U6
                 station_id: vao:490018800
                 name: Burggasse-Stadthalle
-                type: ubahn
+                type: subway
                 # keine direction angegeben -> beide werden angezeigt. 'direction: ""' hätte selben Effekt
