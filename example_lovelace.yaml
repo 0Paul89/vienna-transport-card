@@ -10,7 +10,7 @@ views:
               - id: '49'
                 station_id: vao:490108800
                 name: Westbahnstraße/Neubaugasse
-                type: bim
+                type: bim        # types: bim, bus, subway, train; Icon der Karte hängt ab von "type"
                 direction: "Ring, Volkstheater" # Nur diese Richtung anzeigen
           - type: custom:vienna-transport-card
             update_interval: 60
