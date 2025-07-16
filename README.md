@@ -1,13 +1,10 @@
-Wiener Linien meets Home Assistant! 
+# Wiener Linien meets Home Assistant! 
+
+### Dashboard Karte um Abfahrten anzuzeigen.
 
 
 
-Dashboard Karte um Abfahrten anzuzeigen.
-
-
-
-
-1) <ins>INSTALLATION</ins> 
+## 1) INSTALLATION 
 
 HACS:
 
@@ -19,7 +16,7 @@ MANUELL:
 
 
 
-2) <ins>VERWENDUNG / LOVELACE-SETUP</ins> 
+## 2) VERWENDUNG / LOVELACE-SETUP
 
 NEU: Optionaler Richtungsfilter im Dashboard! (siehe example_lovelace.yaml)
 
@@ -29,7 +26,7 @@ example_lovelace.yaml zeigt korrekte Verwendung. Die station_id muss der Request
 
 
 
-3) <ins>BEISPIELBILDER</ins>
+## 3) BEISPIELBILDER
 
 NORMAL:
 
