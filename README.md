@@ -29,4 +29,4 @@ example_lovelace.yaml zeigt korrekte Verwendung. Die station_id muss der Request
 
   => Abfahrten Website öffnen (https://www.wienmobil.at/de/monitor/PT), Networktools öffnen (F12), auf beliebige Station klicken und station_id aus URL der entsprechenden request entnehmen (station_id Format ist "vao:xxxxxxxxx") 
 
-<img width="514" height="1013" alt="bild" src="https://github.com/user-attachments/assets/907ef5e2-31a5-4b3e-b1c4-8d7d56ce9a11" />
+<img width="511" height="836" alt="bild" src="https://github.com/user-attachments/assets/9ea0a889-5c83-46a0-9594-282793b26e9e" />
