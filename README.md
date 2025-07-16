@@ -4,7 +4,7 @@
 
 
 
-## 1) INSTALLATION 
+## 1. INSTALLATION 
 
 HACS:
 
@@ -16,7 +16,7 @@ MANUELL:
 
 
 
-## 2) VERWENDUNG / LOVELACE-SETUP
+## 2. VERWENDUNG / LOVELACE-SETUP
 
 NEU: Optionaler Richtungsfilter im Dashboard! (siehe example_lovelace.yaml)
 
@@ -26,7 +26,7 @@ example_lovelace.yaml zeigt korrekte Verwendung. Die station_id muss der Request
 
 
 
-## 3) BEISPIELBILDER
+## 3. BEISPIELBILDER
 
 NORMAL:
 
