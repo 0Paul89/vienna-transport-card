@@ -6,7 +6,7 @@
 
 ## 1. INSTALLATION 
 
-HACS (empfohlen):
+HACS:
 
 <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=0Paul89&repository=vienna-transport-card" target="_blank" rel="noreferrer noopener"><img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store." /></a>
 
