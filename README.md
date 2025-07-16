@@ -7,21 +7,21 @@ Dashboard Karte um Abfahrten anzuzeigen.
 
 
 
-INSTALLATION 
+<ins>INSTALLATION</ins> 
 
-HACS:
+<ins>HACS:</ins>
 
 <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=0Paul89&repository=vienna-transport-card" target="_blank" rel="noreferrer noopener"><img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store." /></a>
 
 
 
-MANUELL:
+<ins>MANUELL:</ins>
 
 - vienna-transport-card.js muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources), danach HA neu starten.
 
 
 
-VERWENDUNG / LOVELACE-SETUP 
+<ins>VERWENDUNG / LOVELACE-SETUP</ins> 
 
 NEU: Optionaler Richtungsfilter im Dashboard! (siehe example_lovelace.yaml)
 
