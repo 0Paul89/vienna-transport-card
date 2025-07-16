@@ -7,7 +7,7 @@ Dashboard Karte um Abfahrten anzuzeigen.
 
 
 
-<ins>INSTALLATION</ins> 
+1) <ins>INSTALLATION</ins> 
 
 HACS:
 
@@ -21,7 +21,7 @@ MANUELL:
 
 
 
-<ins>VERWENDUNG / LOVELACE-SETUP</ins> 
+2) <ins>VERWENDUNG / LOVELACE-SETUP</ins> 
 
 NEU: Optionaler Richtungsfilter im Dashboard! (siehe example_lovelace.yaml)
 
@@ -30,7 +30,7 @@ example_lovelace.yaml zeigt korrekte Verwendung. Die station_id muss der Request
   => Abfahrten Website öffnen (https://www.wienmobil.at/de/monitor/PT), Networktools öffnen (F12), auf beliebige Station klicken und station_id aus URL der entsprechenden request entnehmen (station_id Format ist "vao:xxxxxxxxx") 
 
 
-<ins>BEISPIELBILDER</ins>
+3) <ins>BEISPIELBILDER</ins>
 
 NORMAL:
 
