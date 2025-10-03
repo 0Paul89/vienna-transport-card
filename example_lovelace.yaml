@@ -1,32 +1,35 @@
 views:
-  - title: Abfahrten
+  - title: Home
     sections:
       - type: grid
         cards:
           - type: custom:vienna-transport-card
-            update_interval: 60
             max_departures: 3
-            lines:
-              - id: '49'
-                station_id: vao:490108800
-                name: Westbahnstraße/Neubaugasse
-                type: bim        # types: bim, bus, subway, train; Icon der Karte hängt ab von "type"
-                direction: "Ring, Volkstheater" # Nur diese Richtung anzeigen
+            entities:
+              - entity: sensor.wl_monitor_1442
+                type: bim
+              - entity: sensor.wl_monitor_1480
+                type: bim
           - type: custom:vienna-transport-card
-            update_interval: 60
             max_departures: 3
-            lines:
-              - id: 13A
-                station_id: vao:490108800
-                name: Westbahnstraße/Neubaugasse
+            entities:
+              - entity: sensor.wl_monitor_3529
                 type: bus
-                direction: "HAUPTBAHNHOF" # Groß-/Kleinschreibung egal, flexibles matching -> wird in diesem Fall automatisch zu "Hauptbahnhof S U"
+              - entity: sensor.wl_monitor_664
+                type: bus
+      - type: grid
+        cards:
           - type: custom:vienna-transport-card
-            update_interval: 60
             max_departures: 3
-            lines:
-              - id: U6
-                station_id: vao:490018800
-                name: Burggasse-Stadthalle
+            entities:
+              - entity: sensor.wl_monitor_4923
                 type: subway
-                # keine direction angegeben -> beide werden angezeigt. 'direction: ""' hätte selben Effekt
+              - entity: sensor.wl_monitor_4918
+                type: subway
+          - type: custom:vienna-transport-card
+            max_departures: 3
+            entities:
+              - entity: sensor.wl_monitor_4620
+                type: subway
+              - entity: sensor.wl_monitor_4609
+                type: subway
