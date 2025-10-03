@@ -1,6 +1,13 @@
 # Wiener Linien meets Home Assistant! 
 
-### Dashboard Karte um Abfahrten anzuzeigen.
+### Dashboard Karte um Abfahrten und andere Infos anzuzeigen.
+
+
+## MAJOR UPDATE!
+
+Verwendet nun die odg_realtime API der WL. Hierzu wird ein Sensor als custom component hinzugefügt.
+Neu: Zeigt Barrierefreiheit, Klimatisierung (bzw. foldingRamp) und Störungen an.
+
 
 
 
@@ -12,19 +19,22 @@ HACS:
 
 MANUELL:
 
-- vienna-transport-card.js muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources), danach HA neu starten.
+- vienna-transport-card.js muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources)
+- /custom_components/wl_monitor hinzufügen
+- danach HA neu starten
 
 
 
 ## 2. VERWENDUNG / LOVELACE-SETUP
 
-NEU: Optionaler Richtungsfilter im Dashboard! (siehe example_lovelace.yaml)
+[example_lovelace.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_lovelace.yaml) zeigt korrekte Verwendung. 
 
-[example_lovelace.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_lovelace.yaml) zeigt korrekte Verwendung. Die station_id muss der Request entnommen werden, welche die reguläre Wiener Linien Website für Station XY zum Server macht. 
+Sensoren vorher in configuration.yaml definieren:
 
-  => Abfahrten Website öffnen (https://www.wienmobil.at/de/monitor/PT), Networktools öffnen (F12), auf beliebige Station klicken und station_id aus URL der entsprechenden request entnehmen (station_id Format ist "vao:xxxxxxxxx") 
-
-
+1. StopId für Linie/Station/Richtung herausfinden: https://till.mabe.at/rbl/ 
+2. siehe example_configuration.yaml  
+3. Neu laden, danach sind entities mit der jeweiligen StopId als Suffix vorhanden
+   
 
 ## 3. BEISPIELBILDER
 
