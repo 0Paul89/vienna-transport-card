@@ -38,11 +38,8 @@ Sensoren vorher in configuration.yaml definieren:
 
 ## 3. BEISPIELBILDER
 
-NORMAL:
+<img width="459" height="568" alt="WL_HA_1" src="https://github.com/user-attachments/assets/79c6cf4a-a509-422f-8406-ba222891b823" />
 
-<img width="511" height="509" alt="normal" src="https://github.com/user-attachments/assets/f5694528-e2ce-41cc-9e9e-e2ee1345c919" />
+<img width="459" height="498" alt="WL_HA_2" src="https://github.com/user-attachments/assets/917432f4-40e2-4acf-97b7-0626ec7c06c3" />
 
 
-MIT RICHTUNGSFILTER:
-
-<img width="511" height="334" alt="richtungsfilter" src="https://github.com/user-attachments/assets/161d00e4-1f8d-47d4-8826-8b8f1a2682c1" />
