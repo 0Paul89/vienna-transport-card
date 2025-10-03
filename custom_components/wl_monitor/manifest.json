@@ -1,0 +1,8 @@
+{
+  "domain": "wl_monitor",
+  "name": "wl_monitor",
+  "version": "1.0.0",
+  "dependencies": [],
+  "requirements": [],
+  "iot_class": "cloud_polling"
+}
