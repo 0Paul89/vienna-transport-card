@@ -1,0 +1,12 @@
+sensor:
+  - platform: wl_monitor
+    name: "WL Monitor"
+    stops:
+      - '1442'
+      - '1480'
+      - '3529'
+      - '664'
+      - '4923'
+      - '4918'
+      - '4620'
+      - '4609'
