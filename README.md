@@ -19,7 +19,7 @@ In HACS UI: 3-Dots (oben rechts) -> Benutzerdefinierte Repositories -> paste htt
 Dann in HACS nach "wl_monitor" suchen und installieren.
 
 
-## 1. INSTALLATION vienna-transport-card:
+## 2. INSTALLATION vienna-transport-card:
 
 HACS:
 
@@ -32,7 +32,7 @@ MANUELL:
 
 
 
-## 2. VERWENDUNG / LOVELACE-SETUP
+## 3. VERWENDUNG / LOVELACE-SETUP
 
 [example_lovelace.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_lovelace.yaml) zeigt korrekte Verwendung. 
 
@@ -43,7 +43,7 @@ Sensoren vorher in configuration.yaml definieren:
 3. Neu laden, danach sind entities mit der jeweiligen StopId als Suffix vorhanden
    
 
-## 3. BEISPIELBILDER
+## BEISPIELBILDER
 
 <img width="459" height="568" alt="WL_HA_1" src="https://github.com/user-attachments/assets/79c6cf4a-a509-422f-8406-ba222891b823" />
 
