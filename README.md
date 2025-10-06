@@ -2,6 +2,8 @@
 
 ### Dashboard Karte um Abfahrten und andere Infos anzuzeigen.
 
+### WICHTIG: Benötigt die "wl_monitor" Komponente, um zu funktionieren!
+
 
 ## MAJOR UPDATE!
 
@@ -9,7 +11,6 @@ Verwendet nun die odg_realtime API der WL. Hierzu wird ein Sensor als custom com
 Neu: Zeigt Barrierefreiheit, Klimatisierung (bzw. foldingRamp) und Störungen an.
 
 
-Benötigt die "wl_monitor" Komponente. 
 
 ## 1. INSTALLATION wl_monitor:
 
