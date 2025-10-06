@@ -9,9 +9,16 @@ Verwendet nun die odg_realtime API der WL. Hierzu wird ein Sensor als custom com
 Neu: Zeigt Barrierefreiheit, Klimatisierung (bzw. foldingRamp) und Störungen an.
 
 
+Benötigt die "wl_monitor" Komponente. 
+
+## 1. INSTALLATION wl_monitor:
+
+In HACS UI: 3-Dots (oben rechts) -> Benutzerdefinierte Repositories -> paste https://github.com/0Paul89/wl_monitor -> Typ Integration -> hinzufügen
+
+Dann in HACS nach "wl_monitor" suchen und installieren.
 
 
-## 1. INSTALLATION 
+## 1. INSTALLATION vienna-transport-card:
 
 HACS:
 
@@ -20,7 +27,6 @@ HACS:
 MANUELL:
 
 - vienna-transport-card.js muss als Resource hinzugefügt werden (unter http://homeassistant.local:8123/config/lovelace/resources)
-- /custom_components/wl_monitor hinzufügen
 - danach HA neu starten
 
 
