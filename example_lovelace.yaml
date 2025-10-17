@@ -1,35 +1,27 @@
-views:
-  - title: Home
-    sections:
-      - type: grid
-        cards:
-          - type: custom:vienna-transport-card
-            max_departures: 3
-            entities:
-              - entity: sensor.wl_monitor_1442
-                type: bim
-              - entity: sensor.wl_monitor_1480
-                type: bim
-          - type: custom:vienna-transport-card
-            max_departures: 3
-            entities:
-              - entity: sensor.wl_monitor_3529
-                type: bus
-              - entity: sensor.wl_monitor_664
-                type: bus
-      - type: grid
-        cards:
-          - type: custom:vienna-transport-card
-            max_departures: 3
-            entities:
-              - entity: sensor.wl_monitor_4923
-                type: subway
-              - entity: sensor.wl_monitor_4918
-                type: subway
-          - type: custom:vienna-transport-card
-            max_departures: 3
-            entities:
-              - entity: sensor.wl_monitor_4620
-                type: subway
-              - entity: sensor.wl_monitor_4609
-                type: subway
+# 2 in one card
+type: custom:vienna-transport-card
+max_departures: 3
+entities:
+  - entity: sensor.wl_monitor_4620
+    type: subway
+  - entity: sensor.wl_monitor_4918
+    type: subway
+
+# optional filter by direction (if more than one line present for this stop)
+type: custom:vienna-transport-card
+max_departures: 3
+entities:
+  - entity: sensor.wl_monitor_1212
+    type: bim
+    direction: Grinzing
+
+# optional filter by line (if more than one line present for this stop)
+type: custom:vienna-transport-card
+max_departures: 3
+entities:
+  - entity: sensor.wl_monitor_1212
+    type: bim
+    lines:
+      - "38"
+      - "41"
+      
