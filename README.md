@@ -8,8 +8,8 @@
 ## MAJOR UPDATE!
 
 Verwendet nun die odg_realtime API der WL. Hierzu wird ein Sensor als custom component hinzugefügt.
-Neu: Zeigt Barrierefreiheit, Klimatisierung (bzw. foldingRamp) und Störungen an.
 
+Neu: Optionaler Filter nach Richtung und/oder Linie, falls für eine StopID mehr als eine verfügbar (edge case, normalerweise nicht nötig)
 
 
 ## 1. INSTALLATION wl_monitor:
@@ -45,8 +45,7 @@ Sensoren vorher in configuration.yaml definieren:
 
 ## BEISPIELBILDER
 
-<img width="459" height="568" alt="WL_HA_1" src="https://github.com/user-attachments/assets/79c6cf4a-a509-422f-8406-ba222891b823" />
+<img width="456" height="685" alt="WL_1" src="https://github.com/user-attachments/assets/5c86f18c-bab4-4190-bdf6-a22ce05367d0" />
 
-<img width="459" height="498" alt="WL_HA_2" src="https://github.com/user-attachments/assets/917432f4-40e2-4acf-97b7-0626ec7c06c3" />
-
+<img width="457" height="535" alt="WL_2" src="https://github.com/user-attachments/assets/b35c4ee3-fd8a-4b6d-85b5-42f66adb1c71" />
 
