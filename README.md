@@ -9,7 +9,7 @@
 
 Verwendet nun die odg_realtime API der WL. Hierzu wird ein Sensor als custom component hinzugefügt.
 
-Neu: Optionaler Filter nach Richtung und/oder Linie, falls für eine StopID mehr als eine verfügbar (edge case, normalerweise nicht nötig)
+Neu: Optionaler Filter nach Richtung und/oder Linie, falls für eine StopID mehr als eine verfügbar (edge case, normalerweise nicht nötig), respektiert theme variables
 
 
 ## 1. INSTALLATION wl_monitor:
