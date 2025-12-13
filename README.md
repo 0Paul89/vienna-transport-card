@@ -14,7 +14,7 @@ Neu: Optionaler Filter nach Richtung und/oder Linie, falls für eine StopID mehr
 
 ## 1. INSTALLATION wl_monitor:
 
-In HACS UI: 3-Dots (oben rechts) -> Benutzerdefinierte Repositories -> paste https://github.com/0Paul89/wl_monitor -> Typ Integration -> hinzufügen
+In HACS UI: 3-Dots (oben rechts) -> Benutzerdefinierte Repositories -> paste https://github.com/0Paul89/wl_monitor -> Typ: Integration -> hinzufügen
 
 Dann in HACS nach "wl_monitor" suchen und installieren.
 
@@ -32,15 +32,19 @@ MANUELL:
 
 
 
-## 3. VERWENDUNG / LOVELACE-SETUP
+## 3. HALTESTELLEN EINPFLEGEN
 
-[example_lovelace.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_lovelace.yaml) zeigt korrekte Verwendung. 
+1. StopId für Linie/Station/Richtung suchen: https://till.mabe.at/rbl/ 
+2. StopId in die configuration.yaml geben (siehe [example_configuration.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_configuration.yaml))
+3. Home Assistant neu laden
 
-Sensoren vorher in configuration.yaml definieren:
+Nun sollten Enteties mit jeweiligen StopId als Suffix vorhanden sein.
 
-1. StopId für Linie/Station/Richtung herausfinden: https://till.mabe.at/rbl/ 
-2. siehe example_configuration.yaml  
-3. Neu laden, danach sind entities mit der jeweiligen StopId als Suffix vorhanden
+## 4. VERWENDUNG / LOVELACE-SETUP
+
+Falls man nicht mit Cards, Sections und Dashboards vertraut ist empfiehlt es sich im [Home Assistant Wiki](https://www.home-assistant.io/dashboards/sections/#adding-sections-and-cards-to-a-sections-view) einzulesen.
+
+Cards oder Sections können nun mit custom yaml aus [example_lovelace.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_lovelace.yaml) eingerichtet werden.
    
 
 ## BEISPIELBILDER
