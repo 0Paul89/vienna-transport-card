@@ -33,7 +33,7 @@ MANUELL:
 2. StopId in die configuration.yaml geben (siehe [example_configuration.yaml](https://github.com/0Paul89/vienna-transport-card/blob/main/example_configuration.yaml))
 3. Home Assistant neu laden
 
-Nun sollten Enteties mit jeweiligen StopId als Suffix vorhanden sein.
+Nun sollten Entities mit jeweiligen StopId als Suffix vorhanden sein.
 
 ## 4. VERWENDUNG / LOVELACE-SETUP
 
