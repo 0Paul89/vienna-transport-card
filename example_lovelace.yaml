@@ -1,4 +1,4 @@
-# 2 in one card
+# basic usage: 2 stops, 3 departures each
 type: custom:vienna-transport-card
 max_departures: 3
 entities:
@@ -7,7 +7,36 @@ entities:
   - entity: sensor.wl_monitor_4918
     type: subway
 
-# optional filter by direction (if more than one line present for this stop)
+
+# compact mode: combines same line+direction into one row, showing all countdowns
+type: custom:vienna-transport-card
+max_departures: 5
+compact_mode: true
+entities:
+  - entity: sensor.wl_monitor_4620
+    type: subway
+
+
+# hide direction text for a narrower card column
+type: custom:vienna-transport-card
+max_departures: 3
+show_direction: false
+entities:
+  - entity: sensor.wl_monitor_4620
+    type: subway
+
+
+# compact mode + hidden direction for maximum space savings
+type: custom:vienna-transport-card
+max_departures: 5
+compact_mode: true
+show_direction: false
+entities:
+  - entity: sensor.wl_monitor_4620
+    type: subway
+
+
+# filter by direction
 type: custom:vienna-transport-card
 max_departures: 3
 entities:
@@ -15,7 +44,8 @@ entities:
     type: bim
     direction: Grinzing
 
-# optional filter by line (if more than one line present for this stop)
+
+# filter by line
 type: custom:vienna-transport-card
 max_departures: 3
 entities:
@@ -24,4 +54,3 @@ entities:
     lines:
       - "38"
       - "41"
-      
