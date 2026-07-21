@@ -20,6 +20,8 @@ class ViennaTransportCard extends HTMLElement {
     }
     this._config = {
       max_departures: config.max_departures || 3,
+      compact_mode: config.compact_mode || false,
+      show_direction: config.show_direction !== false,
       entities: config.entities.map(entity => 
         typeof entity === 'string' 
           ? { entity, type: 'bim' }
@@ -163,29 +165,58 @@ class ViennaTransportCard extends HTMLElement {
             </div>
           ` : ''}
           <div class="departures">
-            ${filteredDepartures.length ? 
-              filteredDepartures.slice(0, this._config.max_departures).map((dep, index) => 
+            ${(() => {
+              const filtered = filteredDepartures.slice(0, this._config.max_departures);
+              if (!filtered.length) {
+                return '<div class="no-departures">No departures matching the filter criteria</div>';
+              }
+              if (this._config.compact_mode) {
+                const groups = [];
+                for (const dep of filtered) {
+                  const last = groups[groups.length - 1];
+                  if (last && last.line === dep.line && last.direction === dep.direction) {
+                    last.countdowns.push(dep.countdown);
+                    last.times.push({ time_real: dep.time_real, time_planned: dep.time_planned });
+                    if (dep.disturbances?.length) last.disturbances.push(...dep.disturbances);
+                    if (dep.barrier_free) last.barrier_free = true;
+                    if (dep.folding_ramp || dep.foldingRamp) last.folding_ramp = true;
+                  } else {
+                    groups.push({
+                      line: dep.line,
+                      direction: dep.direction,
+                      countdowns: [dep.countdown],
+                      times: [{ time_real: dep.time_real, time_planned: dep.time_planned }],
+                      barrier_free: dep.barrier_free || false,
+                      folding_ramp: dep.folding_ramp || dep.foldingRamp || false,
+                      disturbances: dep.disturbances ? [...dep.disturbances] : [],
+                    });
+                  }
+                }
+                return groups.map((dep, index) => 
+                  this._generateDepartureItem(dep, index, entityConfig.entity, dep.countdowns)
+                ).join('');
+              }
+              return filtered.map((dep, index) => 
                 this._generateDepartureItem(dep, index, entityConfig.entity)
-              ).join('') :
-              '<div class="no-departures">No departures matching the filter criteria</div>'
-            }
+              ).join('');
+            })()}
           </div>
         </div>
       `;
     }).join('');
   }
 
-  _generateDepartureItem(dep, index, entityId) {
+  _generateDepartureItem(dep, index, entityId, countdowns) {
     const hasDisturbances = dep.disturbances?.length > 0;
     const highPriority = hasDisturbances && dep.disturbances.some(d => d.priority === 'high');
     const detailKey = `${entityId}-${index}`;
     const detailsExpanded = !!this._expanded.details[detailKey];
     const foldingRamp = dep.folding_ramp || dep.foldingRamp;
+    const countdownValues = countdowns || [dep.countdown];
 
-    return `
-      <div class="departure-item">
-        <div class="line-number">${dep.line}</div>
-        <div class="departure-details">
+    const countdownHtml = countdownValues.map(c => `<span class="countdown-value">${c} min</span>`).join('');
+
+    const directionHtml = this._config.show_direction ? `
           <div class="direction">
             ${dep.direction}
             ${dep.barrier_free ? '<ha-icon class="barrier-free-icon" icon="mdi:wheelchair-accessibility"></ha-icon>' : ''}
@@ -206,9 +237,15 @@ class ViennaTransportCard extends HTMLElement {
                 <div class="disturbance-description">${dist.description}</div>
               `).join('')}
             </div>
-          ` : ''}
+          ` : ''}` : '';
+
+    return `
+      <div class="departure-item">
+        <div class="line-number">${dep.line}</div>
+        <div class="departure-details">
+          ${directionHtml}
         </div>
-        <div class="countdown">${dep.countdown} min</div>
+        <div class="countdown">${countdownHtml}</div>
       </div>
     `;
   }
@@ -372,10 +409,18 @@ class ViennaTransportCard extends HTMLElement {
       }
 
       .countdown {
+        display: flex;
+        gap: 6px;
         font-weight: 500;
         font-size: 1.1rem;
         color: var(--vt-accent);
         white-space: nowrap;
+      }
+
+      .countdown-value {
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: rgba(0, 188, 212, 0.12);
       }
 
       .barrier-free-icon {
