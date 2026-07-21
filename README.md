@@ -45,6 +45,10 @@ Cards oder Sections können nun mit custom yaml aus [example_lovelace.yaml](http
 
 - `max_departures` (Integer): Anzahl der Abfahrten, die pro konfigurierter Station angezeigt werden sollen.
   - Default: `3`
+- `compact_mode` (Boolean): Fasst aufeinanderfolgende Abfahrten derselben Linie und Richtung in einer Zeile zusammen (z.B. "5B Praterstern S U 4min 11min"). Spart Platz bei Stationen mit vielen Abfahrten.
+  - Default: `false`
+- `show_direction` (Boolean): Zeigt den Richtungstext in jeder Abfahrtszeile an. Auf false setzen für eine schmalere Karte.
+  - Default: `true`
 - `entities` (Array): Liste der zu überwachenden Stationen.
 
 #### Entity-Objekt
