@@ -1,6 +1,6 @@
 {
-  "name": "Vienna Transport Card",
+  "name": "Vienna Transport Card v2",
   "render_readme": true,
-  "filename": "vienna-transport-card.js",
+  "filename": "vienna-transport-card-v2.js",
   "country": "AT"
 }
